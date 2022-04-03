@@ -17,7 +17,7 @@ module.exports = {
         template: './src/index.html'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
     },
     externals: {
         // global app config object
