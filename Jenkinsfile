@@ -18,12 +18,17 @@ pipeline {
                 git credentialsId: 'git-creds', url: 'https://github.com/ahmetchakmak/b-safe.git'
             }
         }
-        stage('Docker Build') {
+        stage('Build') {
             steps{
                 sh 'docker build --tag bsafe:${imageTag} .'
             }    
         }
-        stage('Docker Push') {
+        stage('Test'){
+            steps{
+                sh 'npm test'
+            }
+        }
+        stage('Deploy') {
             steps{
                 script{    
                     docker.withRegistry('http://registry.local:5000')
